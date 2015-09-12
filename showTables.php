@@ -68,103 +68,40 @@ include("config/conf.inc");
 
 		<div class="container">
 			<div class="row">
-				<?php
-					if(isset($_GET['success'])){
-						if($_GET['success']=='true'){
-
-							?>
-							<div class="alert alert-success text-center">
-								Database has been Created!
-				</div>
-							<?php
-						}
-						else{
-
-							?>
-							<div class="alert alert-danger text-center">
-								Database already exists! Error Occured!
-				</div>
-							<?php
-						}
-					}
-
-					if(isset($_GET['successDrop'])){
-						if($_GET['successDrop']=='true'){
-
-							?>
-							<div class="alert alert-success text-center">
-								Database has been Removed!
-				</div>
-							<?php
-						}
-						else{
-
-							?>
-							<div class="alert alert-danger text-center">
-								You have no privileges to Drop this Database!
-				</div>
-							<?php
-						}
-					}
-				?>
+				
 				
 				<div class="col-lg-5">
-					<form class="form-horizontal" action="controller/createDb.php" method="POST">
-<fieldset>
-
-<!-- Form Name -->
-<legend>Create Database</legend>
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-6 control-label" for="textinput">Enter Database Name:</label>  
-  <div class="col-md-6">
-  <input id="textinput" name="dbname" type="text" placeholder="Database Name" class="form-control input-md">
-  <span class="help-block">The Database Name is Required!</span>  
-  </div>
-</div>
-
-<!-- Button -->
-<div class="form-group">
-  <label class="col-md-6 control-label" for="singlebutton">Submit Data</label>
-  <div class="col-md-6">
-    <button type="submit" id="singlebutton" name="subbtn" class="btn btn-primary">Create Database</button>
-  </div>
-</div>
-
-</fieldset>
-</form>
+					<p class="lead">Bootsnipp is an element gallery for web designers and web developers created by Maks, anybody using Bootstrap will find this website essential in their craft.</p>
 
 				</div>
 
 				<div class="col-lg-7">
-					<h3>Databases</h3>
-					<?php
-					$sql=mysql_query("SHOW DATABASES");
-					if($sql){
+          <?php
+            $dbname=$_GET['db'];
+          ?>
+					<h3>Tables in <?php echo $dbname; ?></h3>
+          <?php
+          
+					$sql=mysql_query("SHOW TABLES FROM $dbname");
+          $records=mysql_num_rows($sql);
+          if($records==0){
+            echo "<p class='alert alert-info'>No table/s found in this Database!</p>";
+          }
+					else{
 						$i=0;
 						echo "<table class='table table-bordered'>";
-						echo "<tr><th>S/N</th><th>Database Name</th><th colspan=2>Action</th></tr>";
+						echo "<tr><th>S/N</th><th>Table Name</th><th colspan=3>Action</th></tr>";
 						while($row=mysql_fetch_array($sql)){
-							if($i!=0 && $row['Database']!='mysql'){
+							
 							echo "<tr>";
-				echo "<td>" . $i . "</td><td>".$row['Database']."</td><td><a href='showTables.php?db=$row[Database]'>Show Tables</a></td>";
-				?>
-
-				<td><a href='dropDb.php?db=<?php echo $row[Database]; ?>' onclick="return confirm('Do you really want to Drop this Database?')">Drop Database</a></td>
-							</tr>
+				echo "<td>" . $i . "</td><td>".$row[0]."</td><td><a href='descTable.php?$row[0]'>Describe Table</a></td><td><a href='browseData.php?$row[0]'>Browse Data</a></td><td><a href='dropTable.php?$row[0]'>Drop Table</a></td>";
+							echo "</tr>";
 						
-						<?php	
-						}
+							
+						
 						$i++;
 						}
 						echo "</table>";
-					}
-
-
-					else{
-
-						echo "<p class='alert alert-info'> You have no Database!</p>";
 					}
 					?>
 				</div>
