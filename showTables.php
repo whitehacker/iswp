@@ -94,10 +94,9 @@ include("config/conf.inc");
 						while($row=mysql_fetch_array($sql)){
 							
 							echo "<tr>";
-				echo "<td>" . $i . "</td><td>".$row[0]."</td><td><a href='descTable.php?$row[0]'>Describe Table</a></td><td><a href='browseData.php?$row[0]'>Browse Data</a></td><td><a href='dropTable.php?$row[0]'>Drop Table</a></td>";
+				echo "<td>" . $i . "</td><td>".$row[0]."</td><td><a href='descTable.php?db=$dbname&tab=$row[0]'>Describe Table</a></td><td><a href='browseData.php?db=$dbname&tab=$row[0]'>Browse Data</a></td><td><a href='dropTable.php?$row[0]'>Drop Table</a></td>";
 							echo "</tr>";
 						
-							
 						
 						$i++;
 						}
