@@ -1,7 +1,9 @@
-<!Doctype html>
 <?php
+session_start();
+require("auth.php");
 include("config/conf.inc");
 ?>
+<!Doctype html>
 <html>
 	<head>
 		<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
@@ -16,7 +18,7 @@ include("config/conf.inc");
 
 		<div class="container">
 			<div class="row">
-				
+				<a href="logout.php" class="pull-right">Logout!</a>
 				<div class="col-lg-5">
 					<form class="form-horizontal" method="POST" action="controller/InsertNews.php">
 <fieldset>

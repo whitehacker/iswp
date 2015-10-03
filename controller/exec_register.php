@@ -73,6 +73,7 @@ include("../config/conf.inc");
 	$qry=mysql_query("INSERT INTO users(id,first_name,last_name,email,user_name,pass) VALUES(null,'$fname','$lname','$email','$uname','" . SHA1($pass) . "')");
 	if($qry){
 		$_SESSION['FULL_NAME'] = $fname . " " . $lname;
+		$_SESSION['REG_SUCCESS']="Successfully Registered!";
 		header("location:../register.php");
 		exit();
 	}

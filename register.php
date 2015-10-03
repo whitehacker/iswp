@@ -33,6 +33,10 @@ include("config/conf.inc");
               }
               echo "</ul></div>";
             }
+            if(isset($_SESSION['REG_SUCCESS'])){
+            echo "<div class='alert alert-success'>" . $_SESSION['REG_SUCCESS'] . "</div>";
+            }
+            unset($_SESSION['REG_SUCCESS']);
             unset($_SESSION['ERR_MSG']);
           ?>
 <!-- Text input-->
