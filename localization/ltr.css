@@ -1,0 +1,27 @@
+.main{
+	width:800px;
+	margin: 0 auto;
+}
+.nav{
+	float:left;
+	width: 100px;
+}
+.nav ul{
+	margin:0;
+	padding:0;
+}
+.nav ul li{
+	list-style-type: none;
+	padding: 0.3em;
+}
+.content{
+	margin-left: 120px;
+	border-left: 1px solid gray;
+	padding-left: 0.9em;
+}
+.lang_links{
+	float: right;
+}
+.lang_links  a{
+	padding: 0.9em;
+}

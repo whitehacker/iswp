@@ -74,7 +74,7 @@ include("config/conf.inc");
                $txt=$row['txt']; 
                $txt=substr($txt, 0,200);
                $txt.="<a href='details.php?id=$row[id]'>Read More...</a>";
-               echo $txt;
+               echo "<img src='controller/uploaded/$row[photo]'class='pull-left' width='100'/>" . $txt;
                ?></a>
             </div>
             

@@ -20,7 +20,7 @@ include("config/conf.inc");
 			<div class="row">
 				<a href="logout.php" class="pull-right">Logout!</a>
 				<div class="col-lg-5">
-					<form class="form-horizontal" method="POST" action="controller/InsertNews.php">
+					<form class="form-horizontal" method="POST" action="controller/InsertNews.php" enctype="multipart/form-data">
 <fieldset>
 
 <!-- Form Name -->
@@ -50,6 +50,12 @@ include("config/conf.inc");
   <div class="col-md-6">
   <input id="textinput" name="tags" type="text" placeholder="placeholder" class="form-control input-md">
   
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-md-4 control-label" for="filebutton">Ulopad Photo</label>
+  <div class="col-md-4">
+    <input id="filebutton" name="photo" class="input-file" type="file">
   </div>
 </div>
 
