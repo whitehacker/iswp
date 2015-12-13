@@ -1,0 +1,72 @@
+<!Doctype html>
+<html>
+	<head>
+		<style>
+			.inactive{
+				background: gray;
+			}
+		</style>
+		<script type="text/javascript">
+		var xmlhttp;
+			if(window.XMLHttpRequest){
+				xmlhttp=new XMLHttpRequest();
+			}
+			else if(window.ActiveXObject){
+				xmlhttp=new ActiveXObject('Microsoft.XMLHTTP');
+			}
+			else{
+				alert("Ajax is not supported in your browser!");
+			}
+			xmlhttp.open("GET","book_catalog.xml",false);
+			xmlhttp.send();
+			xmldoc=xmlhttp.responseXML;
+			// document.write(xmldoc);
+			x=xmldoc.getElementsByTagName('CD');
+			i=0;
+			function getCD(){
+				
+				artist=(x[i].getElementsByTagName('ARTIST')[0].childNodes[0].nodeValue);
+				title=(x[i].getElementsByTagName('TITLE')[0].childNodes[0].nodeValue);
+				year=(x[i].getElementsByTagName('YEAR')[0].childNodes[0].nodeValue);
+				price=(x[i].getElementsByTagName('PRICE')[0].childNodes[0].nodeValue);
+				txt="Artist:"+artist+"<br/>"+"Title:"+title+"<br/>"+"Year:"+year+"<br/>"+"Price:"+price;
+				document.getElementById('showCD').innerHTML=txt;
+			}
+			function next(){
+				if(i<x.length-1){
+					i++;
+					getCD();
+				}
+			}
+			function previous(){
+				if(i>0){
+					i--;
+					getCD();
+				}
+			}
+			function last(){
+				i=x.length-1;
+				getCD();
+			}
+			function first(){
+				i=0;
+				getCD();
+			}
+
+		</script>
+
+	</head>
+
+	<body onload="getCD()">
+		<h2>CD Info</h2>
+		<div id="showCD">
+
+		</div>
+		<input type="button" onclick="first()" value="FIRST" />
+		<input type="button" onclick="previous()" id="pre" value="<<PREVIOUS" />
+		<input type="button" onclick="next()" value="NEXT>>" />
+		<input type="button" onclick="last()" value="LAST" />
+
+	</body>
+
+</html>
